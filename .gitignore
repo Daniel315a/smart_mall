@@ -1,8 +1,6 @@
 __pycache__/
-# Ignorar cachés de Python
-__pycache__/
-*.py[cod]
+*.pyc
+*.pyo
+*.pyd
 
-# Ignorar cachés de Python
-__pycache__/
-*.py[cod]
+.env
