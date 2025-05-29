@@ -6,21 +6,26 @@ class UserSchema(BaseModel):
     id: int
     mall_id: Optional[int]
     store_id: Optional[int]
+    auth0_id: str
+    email: Optional[str]
+    nickname: Optional[str]
     name: Optional[str]
+    picture: Optional[str]
     role_id: int
     created_at: Optional[datetime]
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class UserCreateSchema(BaseModel):
-    mall_id: Optional[int]
-    store_id: Optional[int]
+    auth0_id: str
+    email: Optional[str]
+    nickname: Optional[str]
     name: Optional[str]
+    picture: Optional[str]
     role_id: int
 
-class UserUpdateSchema(BaseModel):
-    mall_id: Optional[int] = None
-    store_id: Optional[int] = None
-    name: Optional[str] = None
-    role_id: Optional[int] = None
+class UserWithTokenSchema(BaseModel):
+    user: UserSchema
+    token: str

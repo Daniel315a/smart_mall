@@ -1,7 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.middlewares.auth import AuthMiddleware
 from app.routers import user_role, user, region, city, zone, store, coupon_type, mall, client, coupon, validation, gender
 
 app = FastAPI()
+app.add_middleware(AuthMiddleware)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 app.include_router(user_role.router)
 app.include_router(user.router)
